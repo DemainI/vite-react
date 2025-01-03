@@ -6,9 +6,7 @@ import AppSider from './Sider';
 import Content from './Content';
 import store from '@/store';
 import { Provider } from 'react-redux';
-import { log } from 'console';
-
-const { Footer } = Layout;
+// const { Footer } = Layout;
 const App: React.FC = () => {
 	return (
 		<Provider store={store}>
