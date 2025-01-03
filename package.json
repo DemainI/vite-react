@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
-		"eslint:fix": "eslint . --ext .ts,.tsx --fix --report-unused-disable-directives",
+		"eslint:fix": "eslint --fix",
 		"preview": "vite preview",
 		"stylelint:fix": "stylelint --fix",
 		"prettier:format": "prettier --write",

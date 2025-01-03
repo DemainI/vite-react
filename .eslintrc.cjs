@@ -10,7 +10,9 @@ module.exports = {
     "prettier/prettier": "error",
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    // 强制所有控制语句使用一致的括号风格
+    "curly": "error"
 	},
   "parserOptions": {
     "ecmaFeatures": {
