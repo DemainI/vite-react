@@ -20,10 +20,12 @@
 	"lint-staged": {
 		"*.{js,jsx,,ts,tsx}": [
 			"npm run eslint:fix",
-			"npm run prettier:format"
+			"npm run prettier:format",
+      "git add"
 		],
 		"*.{css,scss}": [
-			"npm run stylelint:fix"
+			"npm run stylelint:fix",
+      "git add"
 		]
 	},
 	"dependencies": {
