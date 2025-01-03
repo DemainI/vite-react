@@ -10,13 +10,9 @@
     "lint:fix": "eslint --fix",
     "preview": "vite preview",
     "lint:style": "stylelint --fix",
-    "prettier:format": "prettier --write",
-    "prepare": "husky install"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
+    "prettier:format": "prettier -c --write \"src/**/*\"",
+    "prepare": "husky install",
+    "lint:staged": "lint-staged"
 	},
 	"lint-staged": {
 		"*.{js,jsx,,ts,tsx}": [
