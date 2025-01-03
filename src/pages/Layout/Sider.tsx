@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const { Sider } = Layout;
 const AppSider = () => {
-	const collapsed = useSelector((state) => state.base.collapsed);
+	const collapsed = useSelector((state: any) => state.base.collapsed);
 	const dispatch = useDispatch();
 	return (
 		<Sider style={{ minHeight: '100vh' }} trigger={null} collapsible collapsed={collapsed} onCollapse={() => dispatch(toggleCollapsed())}>

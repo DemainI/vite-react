@@ -37,7 +37,7 @@ const NetMap = () => {
 		});
 
 		const graph = new Graph({
-			container: document.getElementById('container'),
+			container: document.getElementById('container') as any,
 			grid: true,
 		});
 
@@ -49,7 +49,7 @@ const NetMap = () => {
 			width: 200,
 			height: 200,
 			shape: 'custom-node',
-		});
+		} as any);
 
 		const target = graph.addNode({
 			id: 2,
@@ -57,7 +57,7 @@ const NetMap = () => {
 			y: 260,
 			label: 'test2',
 			shape: 'custom-node',
-		});
+		} as any);
 
 		graph.addEdge({
 			source,

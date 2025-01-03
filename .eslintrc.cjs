@@ -6,9 +6,11 @@ module.exports = {
 	parser: "@typescript-eslint/parser",
 	plugins: ["react", "@typescript-eslint", 'prettier'],
 	rules: {
-    // "arrow-body-style": "off",
-    // "prefer-arrow-callback": "off",
-    // "no-unused-vars": "warn",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/no-unused-vars": ["off"],
 	},
   "parserOptions": {
     "ecmaFeatures": {

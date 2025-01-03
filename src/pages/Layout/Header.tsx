@@ -8,9 +8,7 @@ const AppHeader = () => {
 	const {
 		token: { colorBgContainer },
 	} = theme.useToken();
-	let a: number = 2;
-	a = 'test';
-	const collapsed = useSelector((state) => state.base.collapsed);
+	const collapsed = useSelector((state: any) => state.base.collapsed);
 	const dispatch = useDispatch();
 	return (
 		<Header style={{ padding: 0, background: colorBgContainer }}>
