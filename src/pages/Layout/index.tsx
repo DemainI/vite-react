@@ -1,15 +1,22 @@
 //layout/index.tsx
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, ConfigProvider } from 'antd';
 import AppHeader from './Header';
 import AppSider from './Sider';
 import Content from './Content';
-import store from '@/store';
-import { Provider } from 'react-redux';
+import { useSelector } from 'react-redux';
 // const { Footer } = Layout;
 const App: React.FC = () => {
+	const baseStore = useSelector((state: any) => state.base);
 	return (
-		<Provider store={store}>
+		<ConfigProvider
+			theme={{
+				token: {
+					colorPrimary: baseStore.colorPrimary,
+					borderRadius: baseStore.isRadius ? 6 : 0,
+				},
+			}}
+		>
 			<Layout className="app-layout">
 				<AppSider />
 				<Layout>
@@ -18,7 +25,7 @@ const App: React.FC = () => {
 					{/* <Footer style={{ textAlign: "center", height: "50px" }}>Today©{new Date().getFullYear()} Created by Leo</Footer> */}
 				</Layout>
 			</Layout>
-		</Provider>
+		</ConfigProvider>
 	);
 };
 
