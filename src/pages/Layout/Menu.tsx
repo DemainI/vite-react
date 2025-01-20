@@ -3,6 +3,8 @@ import { HomeOutlined, SettingOutlined, ShopOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { MenuItem } from '@/types/menu';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelectMenuKey, setCurrentPath, addMenu, setOpenMenuKeys } from '@/store/menuSlice';
 
 // 图标映射
 const Icons = {
@@ -18,47 +20,66 @@ const IconByName: React.FC<{ iconName: string }> = ({ iconName }) => {
 	return IconComponent ? <IconComponent /> : null;
 };
 
-const AppMenu: React.FC<{ menu: MenuItem[] }> = ({ menu }) => {
-	const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+const AppMenu = () => {
 	const [menus, setMenus] = useState<MenuItem[]>([]);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const dispatch = useDispatch();
+	const state = useSelector((store: any) => store.menu);
 	useEffect(() => {
-		const menuList: any[] = menu.map((item: MenuItem) => {
+		const menuData = handleMenuData(state.menuList);
+		setMenus(menuData);
+		dispatch(setSelectMenuKey(state.selectMenuKey || [menuData[0]?.key]));
+		navigate(location.pathname || menuData[0]?.key);
+	}, [state.menuList]);
+
+	const handleMenuData = (menuList: MenuItem[]) => {
+		if (!menuList) return [];
+		const processMenuItem = (item: MenuItem) => {
 			return {
 				key: item.key,
 				icon: item.icon && <IconByName iconName={item.icon} />,
 				label: item.label,
-				children:
-					item.children &&
-					item.children.map((child: MenuItem) => ({
-						key: child.key,
-						icon: child.icon && <IconByName iconName={child.icon} />,
-						label: child.label,
-					})),
+				children: item.children && item.children.map(processMenuItem),
 			};
-		});
-		setMenus(menuList);
-		setSelectedKeys(JSON.parse(sessionStorage.getItem('siderMenuKey') || '') || [menuList[0]?.key]);
-		navigate(location.pathname || menuList[0]?.key);
-	}, [menu]);
-	const handleMenuClick = (e: any) => {
-		const targetPath = e?.keyPath?.reverse().join('/');
-		targetPath && navigate(targetPath);
-	};
-	const handleMenuSelect = (e: any) => {
-		setSelectedKeys(e?.selectedKeys);
-		sessionStorage.setItem('siderMenuKey', JSON.stringify(e?.selectedKeys) || 'null');
+		};
+		return menuList.map(processMenuItem);
 	};
 
+	const handleMenuTitle = (key: string): string => {
+		const findLable = (menuList: MenuItem[]) => {
+			for (const item of menuList) {
+				if (item.key === key) {
+					return item.label;
+				} else if (item.children) {
+					const result = findLable(item.children);
+					if (result) {
+						return result;
+					}
+				}
+			}
+		};
+		return findLable(menus) || '';
+	};
+	const handleMenuSelect = (e: any) => {
+		dispatch(setSelectMenuKey(e?.selectedKeys));
+		const targetPath = e?.keyPath?.reverse().join('/');
+		if (targetPath) {
+			navigate(targetPath);
+			dispatch(setCurrentPath(targetPath));
+			const selectedKey = e?.selectedKeys[0] || '';
+			!['home'].includes(targetPath) && dispatch(addMenu({ key: selectedKey, path: targetPath, title: handleMenuTitle(selectedKey) }));
+		}
+	};
 	return (
 		<Menu
+			openKeys={state.openMenuKeys}
+			onOpenChange={(openKeys: string[]) => dispatch(setOpenMenuKeys(openKeys))}
 			theme="dark"
 			mode="inline"
 			style={{ height: '100%' }}
-			selectedKeys={selectedKeys}
+			selectedKeys={state.selectMenuKey}
 			items={menus}
-			onClick={handleMenuClick}
 			onSelect={handleMenuSelect}
 		/>
 	);

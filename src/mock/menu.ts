@@ -41,6 +41,16 @@ const items: MenuItem[] = [
 			{
 				key: 'order',
 				label: '订单管理',
+				children: [
+					{
+						key: 'orderList',
+						label: '订单列表',
+					},
+					{
+						key: 'orderDetail',
+						label: '订单详情',
+					},
+				],
 			},
 		],
 	},

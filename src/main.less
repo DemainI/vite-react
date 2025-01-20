@@ -3,12 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 :root {
+  height: 100vh;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
   color: #242424;
-  background-color: #242424;
+  overflow: hidden;
+  background-color: rgb(255 255 255);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,4 +19,6 @@
  
 html,body,#root,.app-layout{
   height:100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }

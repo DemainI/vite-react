@@ -13,7 +13,8 @@ export interface OpenedMenu {
 // 菜单状态属性
 export interface MenuState {
 	openedMenu: OpenedMenu[];
-	openMenuKey: string[];
 	selectMenuKey: string[];
 	currentPath: string;
+	menuList: MenuItem[];
+	openMenuKeys: string[];
 }

@@ -5,7 +5,7 @@ import store from '@/store';
 const App = () => {
 	return (
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<RouterProvider future={{ v7_startTransition: true }} router={router} />
 		</Provider>
 	);
 };
