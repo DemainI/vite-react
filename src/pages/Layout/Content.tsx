@@ -68,12 +68,10 @@ const AppMain = () => {
 			</Flex>
 			<Content
 				style={{
-					margin: '24px 16px',
-					padding: 24,
 					background: colorBgContainer,
 					borderRadius: borderRadiusLG,
 				}}
-				className="flex-auto overflow-auto mx-24 my-16 p-24"
+				className="flex-auto overflow-auto m-16 p-24"
 			>
 				<Outlet />
 			</Content>

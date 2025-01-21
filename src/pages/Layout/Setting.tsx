@@ -53,14 +53,14 @@ const Setting = () => {
 	const ColorItem: React.FC<{ color: string; isSelectd: boolean }> = ({ color, isSelectd }) => {
 		if (isSelectd) {
 			return (
-				<div className="w-6 h-6 flex justify-center items-center  rounded cursor-pointer items" style={{ background: color }}>
+				<div className="w-20 h-20 flex justify-center items-center  rounded-2 cursor-pointer items" style={{ background: color }}>
 					<CheckOutlined style={{ color: '#fff' }} />
 				</div>
 			);
 		} else {
 			return (
 				<div
-					className="w-6 h-6 flex justify-center items-center  rounded cursor-pointer items"
+					className="w-20 h-20 flex justify-center items-center  rounded-2 cursor-pointer items"
 					style={{ background: color }}
 					onClick={() => handlesetCurColor(color)}
 				></div>

@@ -30,7 +30,9 @@ const App: React.FC = () => {
 				<Layout style={{ overflowY: 'auto' }} className="flex flex-col">
 					<AppHeader />
 					<Content />
-					<Footer style={{ textAlign: 'center', height: '30px' }}>Today©{new Date().getFullYear()} Created by Leo</Footer>
+					<Footer style={{ textAlign: 'center', height: '30px' }} className="p-0">
+						Today©{new Date().getFullYear()} Created by Leo
+					</Footer>
 				</Layout>
 			</Layout>
 		</ConfigProvider>
